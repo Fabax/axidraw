@@ -1,0 +1,123 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "axidraw-utils-raycast",
+  "title": "axidraw-utils-raycast",
+  "description": "UI interface to control the Axidraw plotter as well as getting information on svg to plot",
+  "icon": "extension-icon.png",
+  "author": "fabax",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "axi-utils",
+      "title": "Axidraw Utils",
+      "description": "Open the Axidraw utils list",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.89.0",
+    "@raycast/utils": "^1.17.0",
+    "shell-env": "^4.0.1"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.11",
+    "@types/node": "20.8.10",
+    "@types/react": "18.3.3",
+    "@types/xml2js": "^0.4.14",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.4.5",
+    "xml2js": "^0.6.2"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
+    "publish": "npx @raycast/api@latest publish"
+  },
+  "preferences": [
+    {
+      "key": "model",
+      "name": "model",
+      "required": true,
+      "title": "Axidraw model",
+      "description": "Select the model of the Axidraw",
+      "type": "dropdown",
+      "default": "1",
+      "data": [
+        {
+          "title": "AxiDraw V2, V3, or SE/A4",
+          "value": "1"
+        },
+        {
+          "title": "AxiDraw V3/A3 or SE/A3",
+          "value": "2"
+        },
+        {
+          "title": "AxiDraw V3 XLX",
+          "value": "3"
+        },
+        {
+          "title": "AxiDraw MiniKit",
+          "value": "4"
+        },
+        {
+          "title": "AxiDraw SE/A1",
+          "value": "5"
+        },
+        {
+          "title": "AxiDraw SE/A2",
+          "value": "6"
+        },
+        {
+          "title": "AxiDraw V3/B6",
+          "value": "7"
+        }
+      ],
+      "defaultValue": "2"
+    },
+    {
+      "key": "speed",
+      "name": "speed",
+      "required": true,
+      "title": "Axidraw speed",
+      "description": "Select the speed of the Axidraw",
+      "type": "dropdown",
+      "default": "10",
+      "data": [
+        {
+          "title": "Very slow",
+          "value": "5"
+        },
+        {
+          "title": "Slow",
+          "value": "10"
+        },
+        {
+          "title": "Default",
+          "value": "25"
+        }
+      ],
+      "defaultValue": "25"
+    },
+    {
+      "key": "Print folder",
+      "name": "printFolder",
+      "required": true,
+      "title": "Axidraw Print folder",
+      "description": "Select the Print folder of the Axidraw",
+      "type": "directory"
+    },
+    {
+      "key": "axicli binary path",
+      "name": "axicliPath",
+      "required": true,
+      "title": "Axidraw axicli binary path",
+      "placeholder": "run: \"which axicli\" in your terminal",
+      "description": "Select the axicli binary path of the Axidraw",
+      "type": "textfield"
+    }
+  ]
+}
