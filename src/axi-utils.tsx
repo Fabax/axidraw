@@ -8,7 +8,7 @@ import {
   useNavigation,
   openCommandPreferences,
   getPreferenceValues,
-  LocalStorage,
+  // LocalStorage,
 } from "@raycast/api";
 
 import React from "react";
@@ -45,41 +45,41 @@ const ITEMS = [
       });
     },
   },
-  {
-    id: 1,
-    icon: Icon.House,
-    title: "Send home",
-    subtitle: "Rebase to the home position",
-    accessory: "Command",
-    action: () => {
-      LocalStorage.getItem("currentFile").then((filePath) => {
-        const file = filePath ? filePath : `${__dirname}/assets/a3-plot-calibration.svg`;
+  // {
+  //   id: 1,
+  //   icon: Icon.House,
+  //   title: "Send home",
+  //   subtitle: "Rebase to the home position",
+  //   accessory: "Command",
+  //   action: () => {
+  //     LocalStorage.getItem("currentFile").then((filePath) => {
+  //       const file = filePath ? filePath : `${__dirname}/assets/a3-plot-calibration.svg`;
 
-        runBash(`${axicliPath} ${file} --mode res_home --model ${model} `).then((value) => {
-          const message = value.toString();
+  //       runBash(`${axicliPath} ${file} --mode res_home --model ${model} `).then((value) => {
+  //         const message = value.toString();
 
-          if (message.includes("Command failed")) {
-            showToast({
-              style: Toast.Style.Failure,
-              title: "Error",
-              message: message.split("\n")[1],
-            });
-          } else {
-            showToast({
-              style: Toast.Style.Animated,
-              title: "Sending gome",
-              message: message,
-            });
-          }
-        });
-      });
-    },
-  },
+  //         if (message.includes("Command failed")) {
+  //           showToast({
+  //             style: Toast.Style.Failure,
+  //             title: "Error",
+  //             message: message.split("\n")[1],
+  //           });
+  //         } else {
+  //           showToast({
+  //             style: Toast.Style.Animated,
+  //             title: "Sending gome",
+  //             message: message,
+  //           });
+  //         }
+  //       });
+  //     });
+  //   },
+  // },
   {
     id: 2,
     icon: Icon.Ruler,
-    title: "Calibration",
-    subtitle: "draw a calibration plot",
+    title: "Positioning",
+    subtitle: "draw a corners for positionning plot",
     accessory: "Command",
     action: () => {
       runInTerminal(
@@ -89,6 +89,18 @@ const ITEMS = [
   },
   {
     id: 3,
+    icon: Icon.LineChart,
+    title: "Calibration",
+    subtitle: "draw a calibration plot",
+    accessory: "Command",
+    action: () => {
+      runInTerminal(
+        `${axicliPath} ${__dirname}/assets/a3-plot-calibration2.svg  --progress --report_time --model ${model}`,
+      );
+    },
+  },
+  {
+    id: 4,
     icon: Icon.Folder,
     title: "List files",
     subtitle: "List plottables files",
